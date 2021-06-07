@@ -9,19 +9,15 @@ This is a search engine project it's core is built in java and with a node js / 
 ```bash
 git clone https://github.com/BigFish2086/Search-Engine
 ```
-6. After downloading The node js file run the following inside the webapp folder:
+6. After downloading The node js file run the following inside the webapp folder
+that should install install the needed packages for the webapp to run
 ``` bash
 npm init -y
 ```
-that should install install the needed packages for the webapp to run
-
-8. Create the mysql database using the file according to the schema defined in the `mysql_schema.sql` file
-
-9. Then run the `Main.java` file to run the crawler and the indexer
-
-10. Then after finishing crawling for sometime you can test the webapp to search functionality
+7. Create the mysql database using the file according to the schema defined in the `mysql_schema.sql` file
+8. Then run the `Main.java` file to run the crawler and the indexer
+9. Then after finishing crawling for sometime you can test the webapp to search functionality
 ```bash
 npm run start
 ```
-
-11. finally visit the webapp at `127.0.0.1:3000` and happy searching 😊
+10. finally visit the webapp at `127.0.0.1:3000` and happy searching 😊
