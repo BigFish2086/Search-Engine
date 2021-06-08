@@ -14,7 +14,7 @@ import opennlp.tools.stemmer.PorterStemmer;
 public class InvertedIndex {
 
     private static DBHandler DB;
-    private static final StopWords stopWords = new StopWords("en_stopwords.txt");
+    private static final StopWords stopWords = new StopWords("./src/en_stopwords.txt");
 
     public static void processDocument(String url) {
 
@@ -37,6 +37,7 @@ public class InvertedIndex {
         HashMap<String, String> wordContent = new HashMap<>();
 
         String[] words = Text.split("\\s+|\r");
+        String[] words2 = Text.split("\\s+|\r");
 
         for (int i = 0; i < words.length; i++) {
             words[i] = words[i].toLowerCase();
@@ -49,16 +50,15 @@ public class InvertedIndex {
                 if (i < 10) {
                     int j = 0;
                     for (; j < i; j++)
-                        content.append(words[j]).append(" ");
+                        content.append(words2[j]).append(" ");
                     while (j < 20 && j < words.length)
-                        content.append(words[j++]).append(" ");
+                        content.append(words2[j++]).append(" ");
                 } else {
                     int k = 0;
                     int j = i - 10;
                     while (k++ < 20 && j < words.length)
-                        content.append(words[j++]).append(" ");
+                        content.append(words2[j++]).append(" ");
                 }
-
                 wordContent.put(words[i], content.toString());
             }
         }
@@ -73,10 +73,10 @@ public class InvertedIndex {
     public static void processDirectory(DBHandler db) {
         DB = db;
 
-        while (DB.getNumberOfCrawledPages() < 5000) {
+        while (true) {
             ResultSet rs = DB.getCrawledURL();
 
-            while (DB.getNumberOfCrawledPages() < 5000) {
+            while (true) {
                 try {
                     if (rs == null || !rs.next()) break;
                     processDocument(rs.getString("URL"));
