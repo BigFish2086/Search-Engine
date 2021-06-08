@@ -25,7 +25,6 @@ router.get('/', function(req, res, next) {
 });
 
 // select * from indexed GROUP by word having COUNT(word) > 30
-// art content user zoom ahmed
 router.get('/results', function(req, res, next) {
   let word = String(req.query.search).toLowerCase();
   let stword = natural.PorterStemmer.stem(word);
@@ -44,7 +43,7 @@ router.get('/results', function(req, res, next) {
       //res.send({retData: rows});
       let gtotalPages = parseInt(Math.ceil(rows.length / 10.0));
       if(gtotalPages) {
-        res.render("results", {gtotalPages: gtotalPages, retData: rows});
+        res.render("results", {gtotalPages: gtotalPages, searchWord: req.query.search, retData: rows});
       } else {
         res.render("results", {gtotalPages: 1, notFoundObj: [notFoundObj]});
       }
